@@ -10,17 +10,17 @@ var point_hash = {};
 //绘制点集合
 var draw_array = [];
 //连接范围半径
-var radius = 50;
+var radius = 30;
 //线的颜色
 var line_color = 'black';
 
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
-canvas.height = screenHeight * window.devicePixelRatio;
-canvas.width = screenWidth * window.devicePixelRatio;
+canvas.height = screenHeight * window.devicePixelRatio*3;
+canvas.width = screenWidth * window.devicePixelRatio*3;
 
 let ctx = canvas.getContext('2d')
-ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+ctx.scale(window.devicePixelRatio*3, window.devicePixelRatio*3);
 
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
