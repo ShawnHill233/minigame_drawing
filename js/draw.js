@@ -24,7 +24,6 @@ ctx.scale(window.devicePixelRatio * 3, window.devicePixelRatio * 3 );
 // ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = "white";
-
 wx.onTouchStart(function (e) {
   // console.log(e.touches)
   draw_array = [];    //清空可绘点
@@ -109,23 +108,30 @@ image.src = './image/clear.png'
 image.onload = function () {
   drawMenu();
 }
+
+var buttonClearCor = [screenWidth - 100, screenHeight - 50, 100, 50]
 function drawMenu(){
   menuContext.fillStyle = 'red'
-  menuContext.rect(screenWidth - 100, screenHeight - 50, 100, 50)
-  // menuContext.fillRect(screenWidth - 100, screenHeight - 50, 100, 50)
+  // menuContext.rect(screenWidth - 100, screenHeight - 50, 100, 50)
+  menuContext.fillRect(screenWidth - 100, screenHeight - 50, 100, 50)
   menuContext.drawImage(image, screenWidth - 100, screenHeight - 50, 100, 50)
   // const ctx = canvas.getContext('2d')
   ctx.drawImage(menuCanvas, 0, 0)
 }
+drawMenu()
 // var cpx, cpy;
 wx.onTouchStart(function (e) {
   cpx = e.touches[0].pageX;
   cpy = e.touches[0].pageY;
-  if (menuContext.isPointInPath(cpx, cpy)) {
+  if (isPointInButton(buttonClearCor, cpx, cpy)) {
     ctx.clearRect(0, 0, screenWidth, screenHeight)
     point_hash = {}
     drawMenu()
   }
 })
+function isPointInButton(buttonCor, cpx, cpy){
+  return cpx >= buttonCor[0] && cpx <= buttonCor[0] + buttonCor[2] && 
+  cpy >= buttonCor[1] && cpy <= buttonCor[1] + buttonCor[3]
+}
 //菜单结束
 //====================>
